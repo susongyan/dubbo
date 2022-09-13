@@ -10,6 +10,10 @@ import java.awt.*;
 
 public class LogLogFilter implements Filter{
 
+    public LogLogFilter() {
+        System.out.println("loglog filter inited");
+    }
+
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         System.out.println("\u001B[31m hello loglog... \u001B[0m");
