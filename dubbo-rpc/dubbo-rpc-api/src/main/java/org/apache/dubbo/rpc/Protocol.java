@@ -52,7 +52,6 @@ public interface Protocol {
      */
     @Adaptive
     <T> Exporter<T> export(Invoker<T> invoker) throws RpcException;
-
     /**
      * Refer a remote service: <br>
      * 1. When user calls `invoke()` method of `Invoker` object which's returned from `refer()` call, the protocol
