@@ -84,8 +84,11 @@ public class ZookeeperRegistry extends CacheableFailbackRegistry {
                 logger.warn("Trying to fetch the latest urls, in case there're provider changes during connection loss.\n" +
                     " Since ephemeral ZNode will not get deleted for a connection lose, " +
                     "there's no need to re-register url of this instance.");
+                // zk 连接断开重连(session未过期)后，重新拉取 providers 列表，以免期间服务提供者发生变动
                 ZookeeperRegistry.this.fetchLatestAddresses();
-            } else if (state == StateListener.NEW_SESSION_CREATED) {
+            }
+            // 新会话, 恢复作为 provider 的服务注册和 作为 consumer 的监听
+            else if (state == StateListener.NEW_SESSION_CREATED) {
                 logger.warn("Trying to re-register urls and re-subscribe listeners of this instance to registry...");
                 try {
                     ZookeeperRegistry.this.recover();

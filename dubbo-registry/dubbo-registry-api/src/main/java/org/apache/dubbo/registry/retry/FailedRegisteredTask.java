@@ -22,6 +22,8 @@ import org.apache.dubbo.common.timer.Timeout;
 import org.apache.dubbo.registry.support.FailbackRegistry;
 
 /**
+ * 注册失败，重试任务
+ *
  * FailedRegisteredTask
  */
 public final class FailedRegisteredTask extends AbstractRetryTask {

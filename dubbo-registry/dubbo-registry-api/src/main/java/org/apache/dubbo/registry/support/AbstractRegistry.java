@@ -97,7 +97,11 @@ public abstract class AbstractRegistry implements Registry {
     // Is it synchronized to save the file
     private boolean syncSaveFile;
     private URL registryUrl;
+
     // Local disk cache file
+    /**
+     * 本地文件缓存 /.dubbo/dubbo-registry-cache
+     */
     private File file;
     private final boolean localCacheEnabled;
     protected RegistryManager registryManager;
@@ -112,6 +116,7 @@ public abstract class AbstractRegistry implements Registry {
         if (localCacheEnabled) {
             // Start file save timer
             syncSaveFile = url.getParameter(REGISTRY_FILESAVE_SYNC_KEY, false);
+            // 默认文件路径 .dubbo/dubbo-registry-cache
             String defaultFilename = System.getProperty(USER_HOME) + DUBBO_REGISTRY + url.getApplication() +
                 "-" + url.getAddress().replaceAll(":", "-") + CACHE;
             String filename = url.getParameter(FILE_KEY, defaultFilename);
